@@ -8,20 +8,24 @@ public class ChattingPanel : Panel
     [SerializeField] public TextMeshProUGUI textBox;
     [SerializeField] public TextMeshProUGUI continueText;
     [SerializeField] public TextMeshProUGUI chatterName;
+
     private Input input;
     public bool textFinished;
     private float timeBetweenCharacters = 0.05f;
 
-    private int chat = 0;
-    private List<string> chats;
+    public int chat = 0;
+    public List<string> chats;
+    public string chatter;
 
     CanvasController canvasController;
+    public NpcInteraction npc;
 
     private void Awake()
     {
         Activate();
         input = new Input();
         chats = new();
+        chat = 0;
         canvasController = FindObjectOfType<CanvasController>(true);
 
         input.General.Enable();
@@ -32,24 +36,25 @@ public class ChattingPanel : Panel
                 Next();
         };
     }
-    public void OpenChat(List<string> chat, string chatterName)
+    public void OpenChat()
     {
         active = true;
         Activate();
 
-        Chat(chat, chatterName);
+        Chat();
     }
-    public void Chat(List<string> chat, string chatterName)
+    public void Chat()
     {
-        this.chat = 0;
-        chats = new(chat);
+        chats = new(npc.chats);
+        chatter = npc.npcName;
+        chat = 0;
 
         continueText.gameObject.SetActive(false);
         textFinished = false;
         textBox.text = "";
-        this.chatterName.text = chatterName;
+        chatterName.text = chatter;
 
-        StartCoroutine(Write(chat[this.chat]));
+        StartCoroutine(Write(chats[chat]));
     }
     private IEnumerator Write(string text)
     {

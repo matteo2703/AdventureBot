@@ -24,7 +24,7 @@ public class NpcInteraction : MonoBehaviour
         input.General.Interact.started += i =>
         {
             if (interactable && !controller.isTalking)
-                controller.Talk(chats, npcName);
+                controller.Talk();
         };
 
     }
@@ -34,6 +34,13 @@ public class NpcInteraction : MonoBehaviour
         {
             talkingButton.SetActive(true);
             interactable = true;
+
+            chatPanel.npc = this;
+
+            //chatPanel.chats.Clear();
+            //foreach (var c in chats)
+            //    chatPanel.chats.Add(c);
+            //chatPanel.chatter = npcName;
         }
     }
     private void OnTriggerExit(Collider other)
@@ -42,7 +49,8 @@ public class NpcInteraction : MonoBehaviour
         {
             talkingButton.SetActive(false);
             interactable = false;
-            chatPanel.ClosePanel();
+            if(chatPanel.active)
+                chatPanel.ClosePanel();
         }
     }
 }
