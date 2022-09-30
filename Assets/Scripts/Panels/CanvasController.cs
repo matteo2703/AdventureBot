@@ -13,11 +13,13 @@ public class CanvasController : MonoBehaviour
     public bool inventoryView;
     public bool gameOver;
     public bool craftingView;
+    public bool isTalking;
     public PausePanelManager pausePanelManager;
     public QuestPanel questPanel;
     public InventoryPanel inventoryPanel;
     public GameOverPanel gameOverPanel;
     public CraftingPanel craftingPanel;
+    public ChattingPanel chatPanel;
 
     private void Awake()
     {
@@ -27,6 +29,7 @@ public class CanvasController : MonoBehaviour
         inventoryPanel = FindObjectOfType<InventoryPanel>(true);
         gameOverPanel = FindObjectOfType<GameOverPanel>(true);
         craftingPanel = FindObjectOfType<CraftingPanel>(true);
+        chatPanel = FindObjectOfType<ChattingPanel>(true);
 
         input = new Input();
         playerStats = FindObjectOfType<PlayerStats>(true);
@@ -63,7 +66,7 @@ public class CanvasController : MonoBehaviour
     }
     public void ChangeQuest()
     {
-        if (!inPause && !inventoryView && !gameOver && !craftingView)
+        if (!inPause && !inventoryView && !gameOver && !craftingView && !isTalking)
         {
             viewQuest = !viewQuest;
             if (viewQuest)
@@ -74,7 +77,7 @@ public class CanvasController : MonoBehaviour
     }
     public void ChangeInventory()
     {
-        if (!inPause && !viewQuest && !gameOver && !craftingView)
+        if (!inPause && !viewQuest && !gameOver && !craftingView && !isTalking)
         {
             inventoryView = !inventoryView;
             if (inventoryView)
@@ -85,7 +88,7 @@ public class CanvasController : MonoBehaviour
     }
     public void ChangeCrafting()
     {
-        if(!inPause && !viewQuest && !gameOver && !inventoryView)
+        if(!inPause && !viewQuest && !gameOver && !inventoryView && !isTalking)
         {
             craftingView = !craftingView;
             if (craftingView)
@@ -93,6 +96,25 @@ public class CanvasController : MonoBehaviour
             else
                 craftingPanel.ClosePanel();
         }
+    }
+    public void Talk(string chat, string chatter)
+    {
+        if(!inPause && !viewQuest && !gameOver && !inventoryView && !craftingView && !isTalking)
+        {
+            isTalking = true;
+            if (isTalking)
+                chatPanel.Chat(chat, chatter);
+        }
+    }
+    public void StopTalk()
+    {
+        StartCoroutine(StopTalking());
+    }
+
+    public IEnumerator StopTalking()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isTalking = false;
     }
     private void GameOver()
     {
