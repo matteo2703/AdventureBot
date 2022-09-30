@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70ec069bc508c274b8842c4cf73dd37a, type: 3}
+  m_Name: Assi di legno
+  m_EditorClassIdentifier: 
+  itemsNeeded:
+  - {fileID: 8381199240858997389, guid: a3e339a95a48dd94894627893360665d, type: 3}
+  itemsCreated:
+  - {fileID: 6651683947733287374, guid: 47f86c1d34c0d7d4d866f0016e58bf37, type: 3}
+  - {fileID: 6651683947733287374, guid: 47f86c1d34c0d7d4d866f0016e58bf37, type: 3}
+  - {fileID: 6651683947733287374, guid: 47f86c1d34c0d7d4d866f0016e58bf37, type: 3}
+  - {fileID: 6651683947733287374, guid: 47f86c1d34c0d7d4d866f0016e58bf37, type: 3}
+  - {fileID: 6651683947733287374, guid: 47f86c1d34c0d7d4d866f0016e58bf37, type: 3}
+  id: 0
+  title: Assi di legno
+  description: Assi di legno ricavate da un tronco di legno (5x)
+  exp: 5

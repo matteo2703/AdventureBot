@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70ec069bc508c274b8842c4cf73dd37a, type: 3}
+  m_Name: Bastoncini di legno
+  m_EditorClassIdentifier: 
+  itemsNeeded:
+  - {fileID: 6651683947733287374, guid: 47f86c1d34c0d7d4d866f0016e58bf37, type: 3}
+  itemsCreated:
+  - {fileID: 6018767604224041746, guid: a5422376f4c0c1941a3327f319695532, type: 3}
+  - {fileID: 6018767604224041746, guid: a5422376f4c0c1941a3327f319695532, type: 3}
+  - {fileID: 6018767604224041746, guid: a5422376f4c0c1941a3327f319695532, type: 3}
+  - {fileID: 6018767604224041746, guid: a5422376f4c0c1941a3327f319695532, type: 3}
+  - {fileID: 6018767604224041746, guid: a5422376f4c0c1941a3327f319695532, type: 3}
+  - {fileID: 6018767604224041746, guid: a5422376f4c0c1941a3327f319695532, type: 3}
+  - {fileID: 6018767604224041746, guid: a5422376f4c0c1941a3327f319695532, type: 3}
+  - {fileID: 6018767604224041746, guid: a5422376f4c0c1941a3327f319695532, type: 3}
+  id: 0
+  title: Bastoncini di legno
+  description: Bastoncini di legno ricavati dalla  lavorazione di assi di legno (x8)
+  exp: 8

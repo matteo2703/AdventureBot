@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70ec069bc508c274b8842c4cf73dd37a, type: 3}
+  m_Name: Zappa
+  m_EditorClassIdentifier: 
+  itemsNeeded:
+  - {fileID: 6018767604224041746, guid: a5422376f4c0c1941a3327f319695532, type: 3}
+  - {fileID: 6780206872245357336, guid: a768e510c9857d547a4ff46be1820210, type: 3}
+  - {fileID: 5426363731900585858, guid: 30ebbd6a4c8ccc543879cbb90eb0b39c, type: 3}
+  itemsCreated:
+  - {fileID: 4447060260404134057, guid: 59a40becb55e70643a245c2954fa76ab, type: 3}
+  id: 0
+  title: Zappa
+  description: Attrezzo utile a lavorare la terra, si crea mettendo insieme un bastone
+    di legno e una pietra, legati insieme da una corda
+  exp: 35
