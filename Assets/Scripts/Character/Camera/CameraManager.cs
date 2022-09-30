@@ -23,7 +23,7 @@ public class CameraManager : MonoBehaviour, IDataManager
 
     public float lookAngle;
     public float pivotAngle;
-    public float minimumPivotAngle = -35;
+    public float minimumPivotAngle = 0;
     public float maximumPivotAngle = 35;
 
     private void Awake()

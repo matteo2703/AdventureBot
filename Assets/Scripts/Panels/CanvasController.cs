@@ -97,13 +97,13 @@ public class CanvasController : MonoBehaviour
                 craftingPanel.ClosePanel();
         }
     }
-    public void Talk(string chat, string chatter)
+    public void Talk(List<string> chat, string chatter)
     {
         if(!inPause && !viewQuest && !gameOver && !inventoryView && !craftingView && !isTalking)
         {
             isTalking = true;
             if (isTalking)
-                chatPanel.Chat(chat, chatter);
+                chatPanel.OpenChat(chat, chatter);
         }
     }
     public void StopTalk()

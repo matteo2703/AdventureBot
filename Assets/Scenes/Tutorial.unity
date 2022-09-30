@@ -27910,7 +27910,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1088487830416331755, guid: e401f960146742542a78edad6a32f466, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1088487830416331755, guid: e401f960146742542a78edad6a32f466, type: 3}
       propertyPath: m_LocalPosition.y
@@ -27918,7 +27918,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1088487830416331755, guid: e401f960146742542a78edad6a32f466, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 1088487830416331755, guid: e401f960146742542a78edad6a32f466, type: 3}
       propertyPath: m_LocalRotation.w
@@ -27960,6 +27960,18 @@ PrefabInstance:
       propertyPath: talkingButton
       value: 
       objectReference: {fileID: 667658401}
+    - target: {fileID: 5359742211488023167, guid: e401f960146742542a78edad6a32f466, type: 3}
+      propertyPath: chats.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359742211488023167, guid: e401f960146742542a78edad6a32f466, type: 3}
+      propertyPath: chats.Array.data[0]
+      value: Ciao, mi chiamo Jammored
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359742211488023167, guid: e401f960146742542a78edad6a32f466, type: 3}
+      propertyPath: chats.Array.data[1]
+      value: Come stai?
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e401f960146742542a78edad6a32f466, type: 3}
 --- !u!4 &5419958684709689336

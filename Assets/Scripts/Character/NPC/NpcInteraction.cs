@@ -5,6 +5,7 @@ using UnityEngine;
 public class NpcInteraction : MonoBehaviour
 {
     [SerializeField] public string npcName;
+    [SerializeField] public List<string> chats;
 
     Input input;
     CanvasController controller;
@@ -23,7 +24,7 @@ public class NpcInteraction : MonoBehaviour
         input.General.Interact.started += i =>
         {
             if (interactable && !controller.isTalking)
-                controller.Talk("ciao, come stai? tutto bene? mi chiamo Jammored", npcName);
+                controller.Talk(chats, npcName);
         };
 
     }

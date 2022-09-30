@@ -12,12 +12,16 @@ public class ChattingPanel : Panel
     public bool textFinished;
     private float timeBetweenCharacters = 0.05f;
 
+    private int chat = 0;
+    private List<string> chats;
+
     CanvasController canvasController;
 
     private void Awake()
     {
         Activate();
         input = new Input();
+        chats = new();
         canvasController = FindObjectOfType<CanvasController>(true);
 
         input.General.Enable();
@@ -25,18 +29,27 @@ public class ChattingPanel : Panel
         input.General.Interact.started += i =>
         {
             if (textFinished)
-                ClosePanel();
+                Next();
         };
     }
-    public void Chat(string chat, string chatterName)
+    public void OpenChat(List<string> chat, string chatterName)
     {
+        active = true;
+        Activate();
+
+        Chat(chat, chatterName);
+    }
+    public void Chat(List<string> chat, string chatterName)
+    {
+        this.chat = 0;
+        chats = new(chat);
+
         continueText.gameObject.SetActive(false);
         textFinished = false;
         textBox.text = "";
-        gameObject.SetActive(true);
         this.chatterName.text = chatterName;
 
-        StartCoroutine(Write(chat));
+        StartCoroutine(Write(chat[this.chat]));
     }
     private IEnumerator Write(string text)
     {
@@ -49,12 +62,22 @@ public class ChattingPanel : Panel
         textFinished = true;
         continueText.gameObject.SetActive(true);
     }
+    public void Next()
+    {
+        chat++;
+        textBox.text = "";
+        if (chat == chats.Count)
+            ClosePanel();
+        else
+            StartCoroutine(Write(chats[chat]));
+    }
     public void ClosePanel()
     {
+        active = false;
         textBox.text = "";
         chatterName.text = "";
         textFinished = false;
         canvasController.StopTalk();
-        gameObject.SetActive(false);
+        Activate();
     }
 }
