@@ -13,6 +13,9 @@ public class NpcInteraction : MonoBehaviour
     ChattingPanel chatPanel;
     public bool interactable;
 
+    public Quest startQuest;
+    public Quest endQuest;
+
     private void Awake()
     {
         input = new Input();
@@ -36,11 +39,6 @@ public class NpcInteraction : MonoBehaviour
             interactable = true;
 
             chatPanel.npc = this;
-
-            //chatPanel.chats.Clear();
-            //foreach (var c in chats)
-            //    chatPanel.chats.Add(c);
-            //chatPanel.chatter = npcName;
         }
     }
     private void OnTriggerExit(Collider other)

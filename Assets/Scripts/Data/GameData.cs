@@ -8,7 +8,6 @@ public class GameData : MonoBehaviour, IDataManager
     int thisScene;
 
     TimeController timeController;
-
     private void Awake()
     {
         playerStats = FindObjectOfType<PlayerStats>(true);

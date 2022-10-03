@@ -10,7 +10,7 @@ public class InventoryItem : MonoBehaviour
     public ItemStates state;
     [SerializeField] public PlayerModifiers modifier;
 
-    PlayerStats playerStats;
+    public PlayerStats playerStats;
     private void Awake()
     {
         playerStats = FindObjectOfType<PlayerStats>(true);
@@ -54,6 +54,9 @@ public class InventoryItem : MonoBehaviour
     }
     private void Use()
     {
+        if (playerStats == null)
+            playerStats = FindObjectOfType<PlayerStats>(true);
+
         modifier.StatModifier(playerStats, item.value);
     }
 }

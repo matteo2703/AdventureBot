@@ -66,6 +66,15 @@ public class ItemsManager : MonoBehaviour, IDataManager
 
         SetPrefabDiscover(newItem);
     }
+    public bool FindItemInInventory(InventoryItem item)
+    {
+        foreach(var obj in inventory)
+        {
+            if (obj.Key.item == item.item)
+                return true;
+        }
+        return false;
+    }
     public void SubtractPlayerObject(InventoryItem subtractItem)
     {
         inventory[subtractItem]--;

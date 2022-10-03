@@ -12,6 +12,7 @@ public class ChattingPanel : Panel
     private Input input;
     public bool textFinished;
     private float timeBetweenCharacters = 0.05f;
+    private float speedBoost = 1f;
 
     public int chat = 0;
     public List<string> chats;
@@ -34,6 +35,15 @@ public class ChattingPanel : Panel
         {
             if (textFinished)
                 Next();
+        };
+        input.General.Interact.performed += i =>
+        {
+            if (!textFinished)
+                speedBoost = 3f;
+        };
+        input.General.Interact.canceled += i =>
+        {
+            speedBoost = 1f;
         };
     }
     public void OpenChat()
@@ -61,7 +71,7 @@ public class ChattingPanel : Panel
         foreach(char letter in text)
         {
             textBox.text += letter;
-            yield return new WaitForSeconds(timeBetweenCharacters);
+            yield return new WaitForSeconds(timeBetweenCharacters / speedBoost);
         }
 
         textFinished = true;
@@ -71,8 +81,19 @@ public class ChattingPanel : Panel
     {
         chat++;
         textBox.text = "";
+        textFinished = false;
+        continueText.gameObject.SetActive(false);
+
         if (chat == chats.Count)
+        {
+            if (npc.endQuest != null && npc.endQuest.inProgress)
+                npc.endQuest.EndQuest();
+
+            if (npc.startQuest != null)
+                npc.startQuest.AcceptQuest();
+
             ClosePanel();
+        }
         else
             StartCoroutine(Write(chats[chat]));
     }

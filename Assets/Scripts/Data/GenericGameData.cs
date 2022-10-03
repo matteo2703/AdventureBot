@@ -22,6 +22,11 @@ public class GenericGameData
     public List<SerializableInventoryItems> inventory;
     public List<bool> discoveredItems;
     public List<bool> discoverdRecipes;
+
+    public List<bool> plowdedTerrainSlot;
+    public List<bool> plantedTerrainSlot;
+    public List<int> growingState;
+    public int actualGrowQuestProgress;
     public GenericGameData()
     {
         day = 1;
@@ -42,5 +47,10 @@ public class GenericGameData
         inventory = new();
         discoveredItems = new();
         discoverdRecipes = new();
+
+        plowdedTerrainSlot = new();
+        plantedTerrainSlot = new();
+        growingState = new();
+        actualGrowQuestProgress = 0;
     }
 }
