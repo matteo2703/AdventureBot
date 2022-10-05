@@ -37,7 +37,7 @@ public class RecipeController : MonoBehaviour
     {
         input.General.MoveThrow.started += MoveThrowItems;
         input.General.Confirm.started += IntoObjectAction;
-        input.General.Back.started += OutsideObjectAction;
+        input.General.Back.started += i => GoOutside();
 
         buttonsController.ControllerDeactivation();
     }
@@ -62,7 +62,7 @@ public class RecipeController : MonoBehaviour
             buttonsController.ControllerActivation();
         }
     }
-    public void OutsideObjectAction(InputAction.CallbackContext contet)
+    public void GoOutside()
     {
         if (intoObject)
         {

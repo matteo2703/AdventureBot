@@ -19,7 +19,7 @@ public class InventoryItem : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (item.itemType == ItemTypes.usable || item.itemType == ItemTypes.collectable)
+            if (item.itemType != ItemTypes.coin)
             {
                 ItemsManager.Instance.AddPlayerObject(this);
                 SetState(ItemStates.destroyed);

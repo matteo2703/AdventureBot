@@ -18,6 +18,7 @@ public class Item : ScriptableObject
 public enum ItemTypes
 {
     coin,
+    key,
     usable,
     collectable,
 }

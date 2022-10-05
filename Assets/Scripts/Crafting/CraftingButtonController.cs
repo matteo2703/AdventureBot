@@ -22,14 +22,22 @@ public class CraftingButtonController : Panel
     {
         this.recipe = recipe;
         if (recipe.IsCraftable())
+        {
             active = true;
+            craftButton.gameObject.SetActive(true);
+        }
         else
+        {
             active = false;
+            craftButton.gameObject.SetActive(false);
+            recipeController.GoOutside();
+        }
+
         Activate();
     }
     public void CraftItem()
     {
-        if(recipe!=null && active)
+        if(recipe != null && active)
         {
             recipe.TryToCraft();
             recipeController.RefreshRecipeList();

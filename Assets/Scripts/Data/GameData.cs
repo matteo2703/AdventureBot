@@ -8,12 +8,17 @@ public class GameData : MonoBehaviour, IDataManager
     int thisScene;
 
     TimeController timeController;
+
+    [SerializeField] InventoryItem item;
     private void Awake()
     {
         playerStats = FindObjectOfType<PlayerStats>(true);
         thisScene = SceneManager.GetActiveScene().buildIndex;
         timeController = FindObjectOfType<TimeController>(true);
         Cursor.visible = false;
+
+        if (item != null)
+            ItemsManager.Instance.AddPlayerObject(item);
     }
     public void LoadGame(GenericGameData data)
     {

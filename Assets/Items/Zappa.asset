@@ -17,4 +17,4 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: 25224ad33f7e08a44b6661973ac567da, type: 3}
   value: 1
   isStackable: 1
-  itemType: 2
+  itemType: 3

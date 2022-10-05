@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5bbff83016d0dc4fa637cbd25faabb3, type: 3}
-  m_Name: TanicaOlio
+  m_Name: Key
   m_EditorClassIdentifier: 
-  itemName: Tanica di olio
-  itemDescription: Serva a oliare le giunture e aiuta a mandare via la ruggine
-  itemIcon: {fileID: 21300000, guid: 873392d93408ff9479df54f14e73290d, type: 3}
-  value: 50
-  isStackable: 1
-  itemType: 2
+  itemName: Chiave
+  itemDescription: Apre una porta
+  itemIcon: {fileID: 21300000, guid: 6937d67baec8e2546875d039d638fba3, type: 3}
+  value: 1
+  isStackable: 0
+  itemType: 1
