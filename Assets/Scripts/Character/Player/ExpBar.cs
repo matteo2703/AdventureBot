@@ -6,12 +6,10 @@ using UnityEngine.UI;
 public class ExpBar : MonoBehaviour
 {
     private Image expBar;
-    public PlayerStats stats;
 
     private void Awake()
     {
         expBar = GetComponent<Image>();
-        stats = FindObjectOfType<PlayerStats>(true);
     }
 
     private void OnEnable()
@@ -20,6 +18,6 @@ public class ExpBar : MonoBehaviour
     }
     public void SetExp()
     {
-        expBar.fillAmount = stats.exp / stats.ExpNeeded();
+        expBar.fillAmount = PlayerStats.Instance.exp / PlayerStats.Instance.ExpNeeded();
     }
 }

@@ -2,10 +2,8 @@ using UnityEngine;
 
 public class PlayerLocomotion : MonoBehaviour
 {
-    [HideInInspector] InputManager inputManager;
-    [HideInInspector] PlayerManager playerManager;
-    [HideInInspector] PlayerStats playerStats;
-    [HideInInspector] AnimatorManager animatorManager;
+
+    public static PlayerLocomotion Instance;
 
     [HideInInspector] Vector3 moveDirection;
     [HideInInspector] Transform cameraObject;
@@ -42,11 +40,14 @@ public class PlayerLocomotion : MonoBehaviour
 
     private void Awake()
     {
-        inputManager = GetComponent<InputManager>();
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         playerRigidbody = GetComponent<Rigidbody>();
-        playerManager = GetComponent<PlayerManager>();
-        playerStats = GetComponent<PlayerStats>();
-        animatorManager = GetComponent<AnimatorManager>();
         cameraObject = Camera.main.transform;
     }
     public void HandleAllMovement()
@@ -54,12 +55,12 @@ public class PlayerLocomotion : MonoBehaviour
         if (!isSwimming)
         {
             HandleFallingAndLanding();
-            animatorManager.animator.SetBool("isSwimming", false);
+            AnimatorManager.Instance.animator.SetBool("isSwimming", false);
         }
         else
             HandleSwim();
 
-        if (playerManager.isInteracting)
+        if (PlayerManager.Instance.isInteracting)
             return;
 
         HandleMovement();
@@ -70,46 +71,46 @@ public class PlayerLocomotion : MonoBehaviour
         if (isJumping)
             return;
 
-        moveDirection = cameraObject.forward * inputManager.verticalInupt;
-        moveDirection = moveDirection + cameraObject.right * inputManager.horizontalInupt;
+        moveDirection = cameraObject.forward * InputManager.Instance.verticalInupt;
+        moveDirection = moveDirection + cameraObject.right * InputManager.Instance.horizontalInupt;
         moveDirection.Normalize();
         moveDirection.y = 0f;
 
         if (isSprinting)
         {
             moveDirection = moveDirection * sprintSpeed;
-            inputManager.sprintTime -= Time.deltaTime;
+            InputManager.Instance.sprintTime -= Time.deltaTime;
             runningTime += Time.deltaTime;
 
-            if (inputManager.sprintTime < 0)
+            if (InputManager.Instance.sprintTime < 0)
             {
-                inputManager.sprintTime = 0;
-                if (runningTime >= playerStats.maxSprintTime * 90/100)
+                InputManager.Instance.sprintTime = 0;
+                if (runningTime >= PlayerStats.Instance.maxSprintTime * 90/100)
                 {
-                    playerStats.MoreResistance();
+                    PlayerStats.Instance.MoreResistance();
                     runningTime = 0f;
-                    playerStats.maxSprintTime += playerStats.addAbilityValue;
+                    PlayerStats.Instance.maxSprintTime += PlayerStats.Instance.addAbilityValue;
                 }
             }
         }
         else
         {
             runningTime = 0f;
-            if (inputManager.sprintInput == false)
+            if (InputManager.Instance.sprintInput == false)
             {
-                inputManager.sprintTime += Time.deltaTime;
-                if (inputManager.sprintTime > playerStats.maxSprintTime)
-                    inputManager.sprintTime = playerStats.maxSprintTime;
+                InputManager.Instance.sprintTime += Time.deltaTime;
+                if (InputManager.Instance.sprintTime > PlayerStats.Instance.maxSprintTime)
+                    InputManager.Instance.sprintTime = PlayerStats.Instance.maxSprintTime;
             }
             
-            if (inputManager.moveAmount >= 0.5f)
+            if (InputManager.Instance.moveAmount >= 0.5f)
                 moveDirection = moveDirection * runningSpeed;
             else
                 moveDirection = moveDirection * walkingSpeed;
         }
 
         Vector3 movementVelocity = moveDirection;
-        movementVelocity -= movementVelocity * animatorManager.slowFactor;
+        movementVelocity -= movementVelocity * AnimatorManager.Instance.slowFactor;
         playerRigidbody.velocity = movementVelocity;
     }
     private void HandleRotation()
@@ -119,8 +120,8 @@ public class PlayerLocomotion : MonoBehaviour
 
         Vector3 targetDirection = Vector3.zero;
 
-        targetDirection = cameraObject.forward * inputManager.verticalInupt;
-        targetDirection = targetDirection + cameraObject.right * inputManager.horizontalInupt;
+        targetDirection = cameraObject.forward * InputManager.Instance.verticalInupt;
+        targetDirection = targetDirection + cameraObject.right * InputManager.Instance.horizontalInupt;
         targetDirection.Normalize();
         targetDirection.y = 0f;
 
@@ -142,8 +143,8 @@ public class PlayerLocomotion : MonoBehaviour
 
         if (!isGrounded && !isJumping)
         {
-            if(!playerManager.isInteracting)
-                animatorManager.PlayTargetAnimation("Fall", true);
+            if(!PlayerManager.Instance.isInteracting)
+                AnimatorManager.Instance.PlayTargetAnimation("Fall", true);
 
             inAirTimer = inAirTimer + Time.deltaTime;
             playerRigidbody.AddForce(transform.forward * leapingVelocity);
@@ -152,8 +153,8 @@ public class PlayerLocomotion : MonoBehaviour
 
         if (Physics.SphereCast(raycastOrigin, 0.2f, -Vector3.up, out hit, maxDistance, groundLayer))
         {
-            if (!isGrounded && !playerManager.isInteracting && !isSwimming)
-                animatorManager.PlayTargetAnimation("Land", true);
+            if (!isGrounded && !PlayerManager.Instance.isInteracting && !isSwimming)
+                AnimatorManager.Instance.PlayTargetAnimation("Land", true);
 
             if (inAirTimer > maxSafeDistance)
                 FallingDamage(inAirTimer);
@@ -168,7 +169,7 @@ public class PlayerLocomotion : MonoBehaviour
 
         if (isGrounded && !isJumping)
         {
-            if (playerManager.isInteracting || inputManager.moveAmount > 0)
+            if (PlayerManager.Instance.isInteracting || InputManager.Instance.moveAmount > 0)
                 transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime / 0.1f);
             else
                 transform.position = targetPosition;
@@ -179,15 +180,15 @@ public class PlayerLocomotion : MonoBehaviour
     {
         float extraFloatingTime = timeInAir - maxSafeDistance;
         float damage = -Mathf.NextPowerOfTwo((int)(extraFloatingTime * 100));
-        playerStats.SetHealth(damage);
+        PlayerStats.Instance.SetHealth(damage);
         
     }
     public void HandleJumping()
     {
         if (isGrounded && !isSwimming)
         {
-            animatorManager.animator.SetBool("isJumping", true);
-            animatorManager.PlayTargetAnimation("Jump", false);
+            AnimatorManager.Instance.animator.SetBool("isJumping", true);
+            AnimatorManager.Instance.PlayTargetAnimation("Jump", false);
 
             float jumpingVelocity = Mathf.Sqrt(-2 * gravityIntensity * jumpHeight);
             Vector3 playerVelocity = moveDirection;
@@ -198,7 +199,7 @@ public class PlayerLocomotion : MonoBehaviour
 
     public void HandleSwim()
     {
-        animatorManager.animator.SetBool("isSwimming", true);
+        AnimatorManager.Instance.animator.SetBool("isSwimming", true);
         inAirTimer = 0f;
     }
 }

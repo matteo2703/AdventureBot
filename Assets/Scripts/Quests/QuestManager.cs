@@ -15,6 +15,11 @@ public class QuestManager : MonoBehaviour, IDataManager
 
     private void Awake()
     {
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
         lastQuestRead = -1;
         lastQuestId = -1;

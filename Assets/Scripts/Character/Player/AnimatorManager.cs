@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AnimatorManager : MonoBehaviour
 {
+    public static AnimatorManager Instance;
+
     public Animator animator;
     int horizontal;
     int vertical;
@@ -11,6 +13,13 @@ public class AnimatorManager : MonoBehaviour
     public float slowFactor;
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         animator = GetComponent<Animator>();
         horizontal = Animator.StringToHash("Horizontal");
         vertical = Animator.StringToHash("Vertical");

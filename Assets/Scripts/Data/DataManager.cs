@@ -23,7 +23,6 @@ public class DataManager : MonoBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
 
         dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
     }

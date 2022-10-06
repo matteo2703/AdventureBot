@@ -6,12 +6,7 @@ public class Damage : MonoBehaviour
 {
     public float damage;
     public bool removingHealth;
-    public PlayerStats stats;
 
-    private void Awake()
-    {
-        stats = FindObjectOfType<PlayerStats>(true);
-    }
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player") && !removingHealth)
@@ -20,11 +15,11 @@ public class Damage : MonoBehaviour
 
     public IEnumerator RemoveHealth()
     {
-        stats.settingHealth = true;
+        PlayerStats.Instance.settingHealth = true;
         removingHealth = true;
-        stats.SetHealth(-damage);
+        PlayerStats.Instance.SetHealth(-damage);
         yield return new WaitForSeconds(0.5f);
         removingHealth = false;
-        stats.settingHealth = false;
+        PlayerStats.Instance.settingHealth = false;
     }
 }

@@ -32,6 +32,10 @@ public class PausePanelManager : Panel
         Time.timeScale = 1f;
         DataManager.Instance.BackToMenu();
         SceneManager.LoadSceneAsync("MainMenu");
+
+        DontDestroy[] objectsToDestroy = FindObjectsOfType<DontDestroy>();
+        foreach (DontDestroy obj in objectsToDestroy)
+            obj.Destroy();
     }
 
     public void Save()

@@ -10,11 +10,6 @@ public class InventoryItem : MonoBehaviour
     public ItemStates state;
     [SerializeField] public PlayerModifiers modifier;
 
-    public PlayerStats playerStats;
-    private void Awake()
-    {
-        playerStats = FindObjectOfType<PlayerStats>(true);
-    }
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -54,9 +49,6 @@ public class InventoryItem : MonoBehaviour
     }
     private void Use()
     {
-        if (playerStats == null)
-            playerStats = FindObjectOfType<PlayerStats>(true);
-
-        modifier.StatModifier(playerStats, item.value);
+        modifier.StatModifier(item.value);
     }
 }

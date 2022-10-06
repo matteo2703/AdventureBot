@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class QuestListController : MonoBehaviour
 {
+    public QuestListController Instance;
+
     [SerializeField] QuestController slotsController;
     [SerializeField] List<Quest> quests = new();
 
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         slotsController = FindObjectOfType<QuestController>(true);
     }
     public void OpenQuestBook()

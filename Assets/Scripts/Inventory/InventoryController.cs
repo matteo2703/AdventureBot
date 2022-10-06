@@ -7,8 +7,6 @@ using UnityEngine.InputSystem;
 public class InventoryController : MonoBehaviour
 {
     private Input input;
-    private PlayerStats playerStats;
-    private TimeController timeController;
 
     public List<Slot> slots;
     [SerializeField] Slot prefabSlot;
@@ -27,8 +25,6 @@ public class InventoryController : MonoBehaviour
     private void Awake()
     {
         input = new Input();
-        playerStats = FindObjectOfType<PlayerStats>(true);
-        timeController = FindObjectOfType<TimeController>(true);
     }
     private void OnEnable() { input.General.Enable(); }
     private void OnDisable() { input.General.Disable(); }
@@ -74,9 +70,9 @@ public class InventoryController : MonoBehaviour
     public void Initialize(Dictionary<InventoryItem, int> objects)
     {
         intoObject = false;
-        coinsText.text = playerStats.coins.ToString();
-        timeText.text = $"{timeController.hourOfDay:00}:{timeController.minutesOfHour:00}";
-        levelText.text = $"LIVELLO {playerStats.level}";
+        coinsText.text = PlayerStats.Instance.coins.ToString();
+        timeText.text = $"{TimeController.Instance.hourOfDay:00}:{TimeController.Instance.minutesOfHour:00}";
+        levelText.text = $"LIVELLO {PlayerStats.Instance.level}";
         descriptionController.ResetDescription();
         
         foreach(var item in objects)

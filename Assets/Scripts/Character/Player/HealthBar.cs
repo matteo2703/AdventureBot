@@ -6,12 +6,10 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     private Image healthBar;
-    public PlayerStats stats;
 
     private void Awake()
     {
         healthBar = GetComponent<Image>();
-        stats = FindObjectOfType<PlayerStats>(true);
     }
 
     private void OnEnable()
@@ -20,6 +18,6 @@ public class HealthBar : MonoBehaviour
     }
     public void SetHealth()
     {
-        healthBar.fillAmount = stats.actualLife / stats.totalLife;
+        healthBar.fillAmount = PlayerStats.Instance.actualLife / PlayerStats.Instance.totalLife;
     }
 }

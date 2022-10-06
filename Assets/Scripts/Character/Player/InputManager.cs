@@ -2,10 +2,9 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+    public static InputManager Instance;
+
     [HideInInspector] Input playerControls;
-    [HideInInspector] PlayerLocomotion playerLocomotion;
-    [HideInInspector] AnimatorManager animatorManager;
-    [HideInInspector] PlayerStats playerStats;
 
     [HideInInspector] public Vector2 movementInput;
     [HideInInspector] public Vector2 cameraInput;
@@ -22,9 +21,12 @@ public class InputManager : MonoBehaviour
     [HideInInspector] public bool jumpInput;
     private void Awake()
     {
-        animatorManager = GetComponent<AnimatorManager>();
-        playerLocomotion = GetComponent<PlayerLocomotion>();
-        playerStats = GetComponent<PlayerStats>();
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
     }
     private void OnEnable()
     {
@@ -64,15 +66,15 @@ public class InputManager : MonoBehaviour
         cameraInputY = cameraInput.y;
 
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInupt) + Mathf.Abs(verticalInupt));
-        animatorManager.UpdateAnimatorValue(0, moveAmount, playerLocomotion.isSprinting);
+        AnimatorManager.Instance.UpdateAnimatorValue(0, moveAmount, PlayerLocomotion.Instance.isSprinting);
     }
 
     private void HandleSprintInput()
     {
         if (sprintInput && moveAmount > 0.5f && sprintTime > 0)
-            playerLocomotion.isSprinting = true;
+            PlayerLocomotion.Instance.isSprinting = true;
         else
-            playerLocomotion.isSprinting = false;
+            PlayerLocomotion.Instance.isSprinting = false;
     }
 
     private void HandleJumpInput()
@@ -80,7 +82,7 @@ public class InputManager : MonoBehaviour
         if (jumpInput)
         {
             jumpInput = false;
-            playerLocomotion.HandleJumping();
+            PlayerLocomotion.Instance.HandleJumping();
         }
     }
 }

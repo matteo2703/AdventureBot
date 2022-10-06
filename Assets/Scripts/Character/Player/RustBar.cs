@@ -6,12 +6,9 @@ using UnityEngine.UI;
 public class RustBar : MonoBehaviour
 {
     private Image rustBar;
-    public PlayerStats stats;
-
     private void Awake()
     {
         rustBar = GetComponent<Image>();
-        stats = FindObjectOfType<PlayerStats>(true);
     }
 
     private void OnEnable()
@@ -20,6 +17,6 @@ public class RustBar : MonoBehaviour
     }
     public void SetRust()
     {
-        rustBar.fillAmount = stats.rust / stats.maxRust;
+        rustBar.fillAmount = PlayerStats.Instance.rust / PlayerStats.Instance.maxRust;
     }
 }

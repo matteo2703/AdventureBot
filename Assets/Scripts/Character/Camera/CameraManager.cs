@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour, IDataManager
 {
-    InputManager inputManager;
+    public static CameraManager Instance;
 
     public Transform targetTransform;
     public Transform cameraPivot;
@@ -28,7 +28,13 @@ public class CameraManager : MonoBehaviour, IDataManager
 
     private void Awake()
     {
-        inputManager = FindObjectOfType<InputManager>();
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         cameraTransform = Camera.main.transform;
         defaultPosition = cameraTransform.localPosition.z;
     }
@@ -49,8 +55,8 @@ public class CameraManager : MonoBehaviour, IDataManager
         Vector3 rotation;
         Quaternion targetRotation;
 
-        lookAngle = lookAngle + (inputManager.cameraInputX * cameraLookSpeed);
-        pivotAngle = pivotAngle - (inputManager.cameraInputY * cameraPivotSpeed);
+        lookAngle = lookAngle + (InputManager.Instance.cameraInputX * cameraLookSpeed);
+        pivotAngle = pivotAngle - (InputManager.Instance.cameraInputY * cameraPivotSpeed);
         pivotAngle = Mathf.Clamp(pivotAngle, minimumPivotAngle, maximumPivotAngle);
 
         rotation = Vector3.zero;

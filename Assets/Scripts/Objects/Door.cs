@@ -20,7 +20,7 @@ public class Door : MonoBehaviour
         {
             if (other.CompareTag("Player"))
             {
-                if (ItemsManager.Instance.FindItemIdPosition(key) != -1)
+                if (ItemsManager.Instance.FindItemInInventory(key))
                 {
                     ItemsManager.Instance.SubtractPlayerObject(key);
                     locked = false;

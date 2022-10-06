@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class InventoryPanel : Panel
 {
+    public static InventoryPanel Instance;
+
     [SerializeField] InventoryController inventoryController;
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         Activate();
     }
 

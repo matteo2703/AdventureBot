@@ -18,7 +18,6 @@ public class ChattingPanel : Panel
     public List<string> chats;
     public string chatter;
 
-    CanvasController canvasController;
     public NpcInteraction npc;
 
     private void Awake()
@@ -27,7 +26,6 @@ public class ChattingPanel : Panel
         input = new Input();
         chats = new();
         chat = 0;
-        canvasController = FindObjectOfType<CanvasController>(true);
 
         input.General.Enable();
 
@@ -103,7 +101,7 @@ public class ChattingPanel : Panel
         textBox.text = "";
         chatterName.text = "";
         textFinished = false;
-        canvasController.StopTalk();
+        CanvasController.Instance.StopTalk();
         Activate();
     }
 }

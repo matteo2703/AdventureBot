@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Quest : MonoBehaviour
 {
-    QuestManager questManager;
-    PlayerStats stats;
-
     public int id;
     public string title;
     [TextArea] public string description;
@@ -14,20 +11,14 @@ public class Quest : MonoBehaviour
 
     public bool inProgress;
     public bool isCompleted;
-    [SerializeField] protected Listener nextQuestListener;
+    [SerializeField] protected Listener nextQuest;
     [SerializeField] GameObject showBeforeStartMission;
     [SerializeField] float timeShow;
-
-    CanvasController canvasController;
 
     [SerializeField] public List<GameObject> hideObjects;
 
     private void Awake()
     {
-        questManager = FindObjectOfType<QuestManager>(true);
-        stats = FindObjectOfType<PlayerStats>(true);
-        canvasController = FindObjectOfType<CanvasController>(true);
-
         SetStatus();
         if(showBeforeStartMission != null)
             showBeforeStartMission.SetActive(false);
@@ -70,7 +61,8 @@ public class Quest : MonoBehaviour
         {
             inProgress = true;
             SetStatus();
-            questManager.lastQuestId = id;
+            
+            QuestManager.Instance.lastQuestId = id;
             if (showBeforeStartMission != null)
             {
                 StartCoroutine(ShowInfoQuest());
@@ -82,22 +74,22 @@ public class Quest : MonoBehaviour
     }
     public IEnumerator ShowInfoQuest()
     {
-        canvasController.gameObject.SetActive(false);
+        CanvasController.Instance.gameObject.SetActive(false);
         showBeforeStartMission.SetActive(true);
         yield return new WaitForSeconds(timeShow);
         showBeforeStartMission.SetActive(false);
-        canvasController.gameObject.SetActive(true);
+        CanvasController.Instance.gameObject.SetActive(true);
     }
     public void EndQuest()
     {
         inProgress = false;
         isCompleted = true;
         SetStatus();
-        stats.MoreIntelligence();
-        stats.AddExp(expReleased);
+        PlayerStats.Instance.MoreIntelligence();
+        PlayerStats.Instance.AddExp(expReleased);
 
-        if (nextQuestListener != null)
-            nextQuestListener.ActivateListener();
+        if (nextQuest != null)
+            nextQuest.ActivateListener();
     }
     public Quest FindNextQuest()
     {
@@ -105,6 +97,6 @@ public class Quest : MonoBehaviour
     }
     public Quest FindSpecificQuest(int findId)
     {
-        return questManager.GetQuest(findId);
+        return QuestManager.Instance.GetQuest(findId);
     }
 }

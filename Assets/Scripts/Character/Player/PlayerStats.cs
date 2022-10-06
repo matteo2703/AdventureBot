@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour, IDataManager
 {
-    private InputManager inputManager;
-    private AnimatorManager animatorManager;
+    public static PlayerStats Instance;
+
     private bool addLife;
     [HideInInspector] public bool settingHealth;
     private IEnumerator coroutine;
@@ -36,8 +36,13 @@ public class PlayerStats : MonoBehaviour, IDataManager
     public float rugModifier;
     private void Awake()
     {
-        inputManager = GetComponent<InputManager>();
-        animatorManager = GetComponent<AnimatorManager>();
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         rugModifier = 1f;
     }
     private void Update()
@@ -49,7 +54,7 @@ public class PlayerStats : MonoBehaviour, IDataManager
             coroutine = Wait(5f);
             StartCoroutine(coroutine);
         }
-        else if(settingHealth || actualLife >= totalLife || inputManager.moveAmount != 0)
+        else if(settingHealth || actualLife >= totalLife || InputManager.Instance.moveAmount != 0)
         {
             if(coroutine != null)
                 StopCoroutine(coroutine);
@@ -100,7 +105,7 @@ public class PlayerStats : MonoBehaviour, IDataManager
         yield return new WaitForSeconds(value);
         if (!addLife && !settingHealth && actualLife < totalLife)
             addLife = true;
-        else if(settingHealth || actualLife >= totalLife || inputManager.moveAmount != 0)
+        else if(settingHealth || actualLife >= totalLife || InputManager.Instance.moveAmount != 0)
             addLife = false;
     }
     public void SetHealth(float value)
@@ -125,7 +130,7 @@ public class PlayerStats : MonoBehaviour, IDataManager
         else if (rust < 0)
             rust = 0;
 
-        animatorManager.slowFactor = Mathf.Clamp(rust, 0f, 99f) / 100;
+        AnimatorManager.Instance.slowFactor = Mathf.Clamp(rust, 0f, 99f) / 100;
     }
     public void SetCoins(int value)
     {
@@ -145,8 +150,8 @@ public class PlayerStats : MonoBehaviour, IDataManager
         level = data.playerStat.level;
 
         outsideHealthBar.SetHealth();
-        animatorManager.slowFactor = Mathf.Clamp(rust, 0f, 99f) / 100;
-        inputManager.sprintTime = data.playerStat.maxSprintTime;
+        AnimatorManager.Instance.slowFactor = Mathf.Clamp(rust, 0f, 99f) / 100;
+        InputManager.Instance.sprintTime = data.playerStat.maxSprintTime;
     }
 
     public void SaveGame(GenericGameData data)

@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class QuestPanel : Panel
 {
+    public QuestPanel Instance;
+
     QuestListController questListcontroller;
     private void Awake()
     {
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         questListcontroller = GetComponent<QuestListController>();
         Activate();
     }

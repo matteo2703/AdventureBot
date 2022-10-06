@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "HealtModifier", menuName = "Player Modifiers/Rust Modifier")]
 public class RustModifier : PlayerModifiers
 {
-    public override void StatModifier(PlayerStats stats, float value)
+    public override void StatModifier(float value)
     {
-        stats.SetRust(-value);
+        PlayerStats.Instance.SetRust(-value);
     }
 }

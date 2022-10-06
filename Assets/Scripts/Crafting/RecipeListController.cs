@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RecipeListController : MonoBehaviour
 {
+    public static RecipeListController Instance;
+
     [SerializeField] RecipeController recipesController;
     [SerializeField] List<Recipe> craftingRecipes;
 
@@ -11,6 +13,13 @@ public class RecipeListController : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         recipesController = FindObjectOfType<RecipeController>(true);
         receipeManager = FindObjectOfType<RecipeManager>(true);
     }

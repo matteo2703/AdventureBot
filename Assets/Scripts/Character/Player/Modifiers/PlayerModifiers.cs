@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class PlayerModifiers : ScriptableObject
 {
-    public abstract void StatModifier(PlayerStats stats, float value);
+    public abstract void StatModifier(float value);
 }

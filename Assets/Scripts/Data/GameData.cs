@@ -1,24 +1,37 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameData : MonoBehaviour, IDataManager
 {
-    PlayerStats playerStats;
-    public int lastHourCheck;
-    int thisScene;
+    public static GameData Instance;
 
-    TimeController timeController;
+    public int lastHourCheck;
+    public int thisScene;
 
     [SerializeField] InventoryItem item;
     private void Awake()
     {
-        playerStats = FindObjectOfType<PlayerStats>(true);
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         thisScene = SceneManager.GetActiveScene().buildIndex;
-        timeController = FindObjectOfType<TimeController>(true);
         Cursor.visible = false;
 
         if (item != null)
             ItemsManager.Instance.AddPlayerObject(item);
+
+        StartCoroutine(LoadAsyncScene("Tutorial2"));
+    }
+    
+    public IEnumerator LoadAsyncScene(string scene)
+    {
+        yield return new WaitForSeconds(5f);
+        SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
     }
     public void LoadGame(GenericGameData data)
     {
@@ -36,10 +49,10 @@ public class GameData : MonoBehaviour, IDataManager
     }
     private void Rusting()
     {
-        if (timeController.hourOfDay != lastHourCheck)
+        if (TimeController.Instance.hourOfDay != lastHourCheck)
         {
-            lastHourCheck = timeController.hourOfDay;
-            playerStats.Rusting();
+            lastHourCheck = TimeController.Instance.hourOfDay;
+            PlayerStats.Instance.Rusting();
         }
     }
 }

@@ -5,8 +5,9 @@ using UnityEngine.InputSystem;
 
 public class CanvasController : MonoBehaviour
 {
+    public static CanvasController Instance;
+
     Input input;
-    PlayerStats playerStats;
 
     public bool inPause;
     public bool viewQuest;
@@ -23,6 +24,13 @@ public class CanvasController : MonoBehaviour
 
     private void Awake()
     {
+        if(Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         inPause = false;
         pausePanelManager = FindObjectOfType<PausePanelManager>(true);
         questPanel = FindObjectOfType<QuestPanel>(true);
@@ -32,7 +40,6 @@ public class CanvasController : MonoBehaviour
         chatPanel = FindObjectOfType<ChattingPanel>(true);
 
         input = new Input();
-        playerStats = FindObjectOfType<PlayerStats>(true);
     }
 
     private void OnEnable()
@@ -44,12 +51,13 @@ public class CanvasController : MonoBehaviour
     }
     private void OnDisable()
     {
-        input.General.Disable();
+        if (input != null)
+            input.General.Disable();
     }
 
     private void Update()
     {
-        if (playerStats.actualLife <= 0)
+        if (PlayerStats.Instance.actualLife <= 0)
             GameOver();
     }
 

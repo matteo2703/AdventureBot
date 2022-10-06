@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TimeController : MonoBehaviour, IDataManager
 {
+    public static TimeController Instance;
+
     [SerializeField] private Light sun;
     private float secondsInFullDay = 300f; //5 minuti = 1 giorno
 
@@ -16,6 +18,15 @@ public class TimeController : MonoBehaviour, IDataManager
     public int year;
     private int daysInYear = 100;
 
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
     private void Start()
     {
         sunInitialIntensity = sun.intensity;

@@ -4,21 +4,17 @@ using UnityEngine;
 
 public class WaterController : MonoBehaviour
 {
-    PlayerLocomotion playerLocomotion;
     Rigidbody playerRigidbody;
-    PlayerStats playerStats;
     private void Awake()
     {
-        playerLocomotion = FindObjectOfType<PlayerLocomotion>(true);
         playerRigidbody = FindObjectOfType<Rigidbody>(true);
-        playerStats = FindObjectOfType<PlayerStats>(true);
     }
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            playerLocomotion.isSwimming = true;
-            playerStats.rugModifier = 5f;
+            PlayerLocomotion.Instance.isSwimming = true;
+            PlayerStats.Instance.rugModifier = 5f;
             playerRigidbody.useGravity = false;   
         }
     }
@@ -26,8 +22,8 @@ public class WaterController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerLocomotion.isSwimming = false;
-            playerStats.rugModifier = 1f;
+            PlayerLocomotion.Instance.isSwimming = false;
+            PlayerStats.Instance.rugModifier = 1f;
             playerRigidbody.useGravity = true;
         }
     }
