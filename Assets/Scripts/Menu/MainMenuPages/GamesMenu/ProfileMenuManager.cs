@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -40,7 +41,17 @@ public class ProfileMenuManager : MonoBehaviour
         DataManager.Instance.ChangeSelectedProfileId(slot.GetProfileId());
         //load game
         DataManager.Instance.LoadGame();
+
+        StartCoroutine(LoadAsync());
+    }
+
+    private IEnumerator LoadAsync()
+    {
         //load scene
-        SceneManager.LoadSceneAsync(DataManager.Instance.gameData.lastScene);
+        AsyncOperation characterSceneLoad = SceneManager.LoadSceneAsync("Character");
+        AsyncOperation sceneLoad = SceneManager.LoadSceneAsync(DataManager.Instance.gameData.lastScene, LoadSceneMode.Additive);
+
+        while (!characterSceneLoad.isDone || !sceneLoad.isDone)
+            yield return null;
     }
 }

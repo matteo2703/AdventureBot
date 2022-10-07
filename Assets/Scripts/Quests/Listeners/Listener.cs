@@ -4,5 +4,5 @@ using UnityEngine;
 
 public abstract class Listener : ScriptableObject
 {
-    public abstract void ActivateListener();
+    public abstract void ActivateListener(int thisQuestId);
 }

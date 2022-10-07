@@ -3395,7 +3395,6 @@ GameObject:
   - component: {fileID: 5794506925377231142}
   - component: {fileID: 5794506925377231143}
   - component: {fileID: 5794506925377231145}
-  - component: {fileID: 5794506925377231144}
   m_Layer: 3
   m_Name: Jammo
   m_TagString: Player
@@ -3456,6 +3455,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInteracting: 0
+  chatInteractable: 0
+  talkingButton: {fileID: 0}
+  agricultureInteraction: 0
+  hoe: {fileID: 0}
+  plowderButton: {fileID: 0}
+  seedButton: {fileID: 0}
+  harvestButton: {fileID: 0}
+  craftInteractable: 0
+  craftingButton: {fileID: 0}
 --- !u!114 &5794506925377231141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3584,18 +3592,6 @@ MonoBehaviour:
   levelText: {fileID: 0}
   addAbilityValue: 0.001
   rugModifier: 0
---- !u!114 &5794506925377231144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5794506925377231137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b34d0662c83f45f449231889f3b70eaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5862242020310148216
 GameObject:
   m_ObjectHideFlags: 0

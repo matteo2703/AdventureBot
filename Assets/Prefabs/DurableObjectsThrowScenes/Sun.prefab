@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6338270756105971443}
   - component: {fileID: 6338270756105971440}
-  - component: {fileID: 6338270756105971442}
   - component: {fileID: 480321363423146568}
   m_Layer: 0
   m_Name: Sun
@@ -96,18 +95,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &6338270756105971442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6338270756105971441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b34d0662c83f45f449231889f3b70eaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &480321363423146568
 MonoBehaviour:
   m_ObjectHideFlags: 0

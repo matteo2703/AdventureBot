@@ -27,21 +27,6 @@ public class DataManager : MonoBehaviour
         dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
     }
 
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        dataObjects = FindDataObjects();
-        LoadGame();
-    }
-
     public void ChangeSelectedProfileId(string newProfileId)
     {
         selectedProfileId = newProfileId;
@@ -60,6 +45,7 @@ public class DataManager : MonoBehaviour
     }
     public void LoadGame()
     {
+        dataObjects = FindDataObjects();
         gameData = dataHandler.Load(selectedProfileId);
 
         if (gameData == null)

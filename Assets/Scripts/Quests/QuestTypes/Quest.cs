@@ -8,6 +8,7 @@ public class Quest : MonoBehaviour
     public string title;
     [TextArea] public string description;
     public float expReleased;
+    public bool initialized;
 
     public bool inProgress;
     public bool isCompleted;
@@ -19,6 +20,9 @@ public class Quest : MonoBehaviour
 
     private void Awake()
     {
+        foreach (var obj in hideObjects)
+            obj.SetActive(true);
+
         SetStatus();
         if(showBeforeStartMission != null)
             showBeforeStartMission.SetActive(false);
@@ -34,13 +38,16 @@ public class Quest : MonoBehaviour
             obj.SetActive(false);
     }
 
-    public virtual void Initialize() { }
+    public virtual void Initialize() 
+    {
+        initialized = true;
+        HideObjects();
+    }
     public void InitQuest(int id)
     {
         this.id = id;
         inProgress = false;
         isCompleted = false;
-        Initialize();
         SetStatus();
         HideObjects();
     }
@@ -57,6 +64,8 @@ public class Quest : MonoBehaviour
 
     public void AcceptQuest()
     {
+        QuestManager.Instance.AddQuest(this);
+
         if(!inProgress && !isCompleted)
         {
             inProgress = true;
@@ -67,9 +76,6 @@ public class Quest : MonoBehaviour
             {
                 StartCoroutine(ShowInfoQuest());
             }
-
-            foreach (var obj in hideObjects)
-                obj.SetActive(true);
         }
     }
     public IEnumerator ShowInfoQuest()
@@ -89,7 +95,7 @@ public class Quest : MonoBehaviour
         PlayerStats.Instance.AddExp(expReleased);
 
         if (nextQuest != null)
-            nextQuest.ActivateListener();
+            nextQuest.ActivateListener(id);
     }
     public Quest FindNextQuest()
     {

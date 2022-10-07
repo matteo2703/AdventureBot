@@ -24,14 +24,6 @@ public class GameData : MonoBehaviour, IDataManager
 
         if (item != null)
             ItemsManager.Instance.AddPlayerObject(item);
-
-        StartCoroutine(LoadAsyncScene("Tutorial2"));
-    }
-    
-    public IEnumerator LoadAsyncScene(string scene)
-    {
-        yield return new WaitForSeconds(5f);
-        SceneManager.LoadSceneAsync(scene, LoadSceneMode.Additive);
     }
     public void LoadGame(GenericGameData data)
     {

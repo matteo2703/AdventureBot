@@ -79,7 +79,7 @@ public class QuestManager : MonoBehaviour, IDataManager
         data.quests.Clear();
         foreach(Quest quest in questList)
         {
-            data.quests.Add(new SerializableQuest(quest.inProgress, quest.isCompleted));
+            data.quests.Add(new SerializableQuest(quest.inProgress, quest.isCompleted, quest.id));
         }
     }
 

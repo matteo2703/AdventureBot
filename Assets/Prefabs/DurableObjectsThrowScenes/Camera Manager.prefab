@@ -187,7 +187,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6151028401498733705}
   - component: {fileID: 6151028401498733814}
-  - component: {fileID: 6151028401498733815}
   m_Layer: 0
   m_Name: Camera Manager
   m_TagString: Untagged
@@ -239,15 +238,3 @@ MonoBehaviour:
   pivotAngle: 0
   minimumPivotAngle: 0
   maximumPivotAngle: 35
---- !u!114 &6151028401498733815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6151028401498733704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b34d0662c83f45f449231889f3b70eaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

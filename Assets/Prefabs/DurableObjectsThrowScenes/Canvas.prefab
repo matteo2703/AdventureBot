@@ -4620,7 +4620,6 @@ GameObject:
   - component: {fileID: 7083108551843314712}
   - component: {fileID: 7083108551843314715}
   - component: {fileID: 7083108551843314695}
-  - component: {fileID: 7083108551843314692}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4740,18 +4739,6 @@ MonoBehaviour:
   gameOverPanel: {fileID: 0}
   craftingPanel: {fileID: 0}
   chatPanel: {fileID: 0}
---- !u!114 &7083108551843314692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7083108551843314714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b34d0662c83f45f449231889f3b70eaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7083108551849290399
 GameObject:
   m_ObjectHideFlags: 0

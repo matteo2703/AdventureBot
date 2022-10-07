@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.172768, g: 0.21589169, b: 0.29782546, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000004, guid: cea6ff0f1435a4a45a8717d1fc87d6f9, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &6480656 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7083108552876776401, guid: d531bf1ddd0ab254885297f8fd5e42ae, type: 3}
+  m_PrefabInstance: {fileID: 7083108552861578742}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &667658401 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7083108552227937623, guid: d531bf1ddd0ab254885297f8fd5e42ae, type: 3}
@@ -235,6 +240,10 @@ PrefabInstance:
       propertyPath: talkingButton
       value: 
       objectReference: {fileID: 667658401}
+    - target: {fileID: 5794506925377231140, guid: 78f375362c85ca34c99eb0c98974d47d, type: 3}
+      propertyPath: craftingButton
+      value: 
+      objectReference: {fileID: 6480656}
     - target: {fileID: 5794506925377231145, guid: 78f375362c85ca34c99eb0c98974d47d, type: 3}
       propertyPath: inventoryRustBar
       value: 
@@ -291,8 +300,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5794506925377231144, guid: 78f375362c85ca34c99eb0c98974d47d, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78f375362c85ca34c99eb0c98974d47d, type: 3}
 --- !u!1001 &2690108675733959295
 PrefabInstance:
@@ -353,8 +361,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: EventSystem
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2690108674054024841, guid: 48ffb8cce350cca42a7b249b53ea215e, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48ffb8cce350cca42a7b249b53ea215e, type: 3}
 --- !u!1001 &6151028401368916278
 PrefabInstance:
@@ -415,8 +422,7 @@ PrefabInstance:
       propertyPath: targetTransform
       value: 
       objectReference: {fileID: 1660895037}
-    m_RemovedComponents:
-    - {fileID: 6151028401498733815, guid: 7e6b13d336664b34894a411cf487d14f, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e6b13d336664b34894a411cf487d14f, type: 3}
 --- !u!1001 &6338270756751187773
 PrefabInstance:
@@ -473,8 +479,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6338270756105971442, guid: 8fada4451e1127f40a113deadbe41043, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8fada4451e1127f40a113deadbe41043, type: 3}
 --- !u!1001 &6732636228069242138
 PrefabInstance:
@@ -535,8 +540,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6732636227947649675, guid: 3b75aeb000963b24baa88555e1b535bb, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b75aeb000963b24baa88555e1b535bb, type: 3}
 --- !u!1001 &7083108552861578742
 PrefabInstance:
@@ -634,6 +638,10 @@ PrefabInstance:
       value: Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 7083108552015736729, guid: d531bf1ddd0ab254885297f8fd5e42ae, type: 3}
+      propertyPath: questList.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7083108552015736729, guid: d531bf1ddd0ab254885297f8fd5e42ae, type: 3}
       propertyPath: questList.Array.data[0]
       value: 
       objectReference: {fileID: 9037915778176784548, guid: b42bd7a6a8d679640b1cc2ab07e42072, type: 3}
@@ -685,8 +693,11 @@ PrefabInstance:
       propertyPath: questList.Array.data[12]
       value: 
       objectReference: {fileID: 8939841518795565070, guid: 82f434fdba4318b4b85e4b877108f250, type: 3}
-    m_RemovedComponents:
-    - {fileID: 7083108551843314692, guid: d531bf1ddd0ab254885297f8fd5e42ae, type: 3}
+    - target: {fileID: 7083108552015736730, guid: d531bf1ddd0ab254885297f8fd5e42ae, type: 3}
+      propertyPath: m_Transition
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d531bf1ddd0ab254885297f8fd5e42ae, type: 3}
 --- !u!1 &8383795451397164848 stripped
 GameObject:

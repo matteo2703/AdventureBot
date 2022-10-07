@@ -1420,7 +1420,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1311264094078706524
 Transform:
   m_ObjectHideFlags: 0
@@ -1521,7 +1521,7 @@ MonoBehaviour:
     i tasti direzionali per muoverti e il tasto salta per aiutarti a raggiungere
     l''obiettivo)'
   expReleased: 10
-  inProgress: 1
+  inProgress: 0
   isCompleted: 0
   nextQuest: {fileID: 0}
   showBeforeStartMission: {fileID: 1311264095466628102}

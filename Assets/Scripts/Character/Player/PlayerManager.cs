@@ -14,6 +14,7 @@ public class PlayerManager : MonoBehaviour, IDataManager
     ChattingPanel chatPanel;
 
     public bool agricultureInteraction;
+    public TerrainSlot terrain;
     [SerializeField] InventoryItem hoe;
     [SerializeField] PlowButton plowderButton;
     [SerializeField] SeedButton seedButton;
@@ -32,12 +33,22 @@ public class PlayerManager : MonoBehaviour, IDataManager
         }
         Instance = this;
 
+        DeactivateButtons();
+
         animator = GetComponent<Animator>();
         chatPanel = FindObjectOfType<ChattingPanel>(true);
 
         input = new Input();
         input.General.Enable();
         input.General.Interact.started += input => { Interaction(); };
+    }
+    private void DeactivateButtons()
+    {
+        talkingButton.SetActive(false);
+        plowderButton.gameObject.SetActive(false);
+        seedButton.gameObject.SetActive(false);
+        harvestButton.gameObject.SetActive(false);
+        craftingButton.SetActive(false);
     }
     private void Update()
     {
@@ -79,22 +90,22 @@ public class PlayerManager : MonoBehaviour, IDataManager
         else if (other.CompareTag("Terrain"))
         {
             agricultureInteraction = true;
-            TerrainSlot slot = other.GetComponent<TerrainSlot>();
-            slot.interactable = true;
-            if (!slot.plowded && ItemsManager.Instance.FindItemInInventory(hoe))
+            terrain = other.GetComponent<TerrainSlot>();
+            terrain.interactable = true;
+            if (!terrain.plowded && ItemsManager.Instance.FindItemInInventory(hoe))
             {
                 plowderButton.gameObject.SetActive(true);
-                plowderButton.slot = slot;
+                plowderButton.slot = terrain;
             }
-            else if (slot.plowded && !slot.planted)
+            else if (terrain.plowded && !terrain.planted)
             {
                 seedButton.gameObject.SetActive(true);
-                seedButton.slot = slot;
+                seedButton.slot = terrain;
             }
-            else if (slot.plowded && slot.planted && slot.growed)
+            else if (terrain.plowded && terrain.planted && terrain.growed)
             {
                 harvestButton.gameObject.SetActive(true);
-                harvestButton.slot = slot;
+                harvestButton.slot = terrain;
             }
         }
         else if (other.CompareTag("Crafting"))
@@ -118,6 +129,7 @@ public class PlayerManager : MonoBehaviour, IDataManager
             seedButton.gameObject.SetActive(false);
             harvestButton.gameObject.SetActive(false);
 
+            terrain = null;
             agricultureInteraction = false;
             plowderButton.slot = null;
             seedButton.slot = null;
