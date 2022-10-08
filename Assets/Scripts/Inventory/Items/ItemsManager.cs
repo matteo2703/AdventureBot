@@ -104,7 +104,7 @@ public class ItemsManager : MonoBehaviour, IDataManager
             data.inventory.Add(new SerializableInventoryItems(FindItemIdPosition(item.Key), item.Value));
 
         data.discoveredItems.Clear();
-        foreach(bool prefab in prefabGameItemsDiscovered)
+        foreach (bool prefab in prefabGameItemsDiscovered)
             data.discoveredItems.Add(prefab);
     }
 

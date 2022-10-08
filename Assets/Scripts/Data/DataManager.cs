@@ -10,7 +10,7 @@ public class DataManager : MonoBehaviour
     [Header("File Storage Config")]
     [SerializeField] private string fileName;
 
-    private List<IDataManager> dataObjects;
+    public List<IDataManager> dataObjects;
     public GenericGameData gameData;
     private FileDataHandler dataHandler;
     private string selectedProfileId = "";
@@ -73,7 +73,7 @@ public class DataManager : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private List<IDataManager> FindDataObjects()
+    public List<IDataManager> FindDataObjects()
     {
         IEnumerable<IDataManager> dataObjects = FindObjectsOfType<MonoBehaviour>(true).OfType<IDataManager>();
         return new List<IDataManager>(dataObjects);

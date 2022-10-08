@@ -10,7 +10,7 @@ public class GrowQuest : Quest, IDataManager
 
     public void LoadGame(GenericGameData data)
     {
-        if(inProgress)
+        if (inProgress)
             plantsGrowed = data.actualGrowQuestProgress;
     }
 

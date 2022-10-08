@@ -13,6 +13,7 @@ public class PausePanelManager : Panel
 
     public void SetPause()
     {
+        DataManager.Instance.dataObjects =  DataManager.Instance.FindDataObjects();
         Time.timeScale = 0f;
         foreach (Panel panel in panels)
             panel.Deactivate();

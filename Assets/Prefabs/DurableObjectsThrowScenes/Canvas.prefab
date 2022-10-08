@@ -4828,6 +4828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb981fc9a9937ee4197f58fcaf10a493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 7083108551849290397}
 --- !u!1 &7083108551862156191
 GameObject:
   m_ObjectHideFlags: 0
@@ -5144,6 +5145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb981fc9a9937ee4197f58fcaf10a493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 7083108551906901157}
 --- !u!1 &7083108551942001032
 GameObject:
   m_ObjectHideFlags: 0

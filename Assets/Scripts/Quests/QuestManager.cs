@@ -77,9 +77,9 @@ public class QuestManager : MonoBehaviour, IDataManager
         data.lastQuestRead = lastQuestRead;
 
         data.quests.Clear();
-        foreach(Quest quest in questList)
+        foreach (Quest quest in questList)
         {
-            data.quests.Add(new SerializableQuest(quest.inProgress, quest.isCompleted, quest.id));
+            data.quests.Add(new SerializableQuest(quest.inProgress, quest.isCompleted, quest.id, quest.title, quest.description));
         }
     }
 
@@ -88,8 +88,10 @@ public class QuestManager : MonoBehaviour, IDataManager
         lastQuestId = data.lastQuestId;
         lastQuestRead = data.lastQuestRead;
 
-        for(int i = 0; i < data.quests.Count; i++)
+        for (int i = 0; i < data.quests.Count; i++)
         {
+            Quest quest = Quest.FindSpecificQuest(data.quests[i].id);
+            questList.Add(quest);
             questList[i].inProgress = data.quests[i].inProgress;
             questList[i].isCompleted = data.quests[i].isCompleted;
             questList[i].SetStatus();

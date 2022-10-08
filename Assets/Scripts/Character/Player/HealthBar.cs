@@ -5,13 +5,7 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    private Image healthBar;
-
-    private void Awake()
-    {
-        healthBar = GetComponent<Image>();
-    }
-
+    [SerializeField] Image healthBar;
     private void OnEnable()
     {
         SetHealth();

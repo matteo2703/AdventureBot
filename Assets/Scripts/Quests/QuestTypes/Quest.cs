@@ -101,7 +101,7 @@ public class Quest : MonoBehaviour
     {
         return FindSpecificQuest(id + 1);
     }
-    public Quest FindSpecificQuest(int findId)
+    public static Quest FindSpecificQuest(int findId)
     {
         return QuestManager.Instance.GetQuest(findId);
     }

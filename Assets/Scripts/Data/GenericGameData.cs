@@ -33,7 +33,7 @@ public class GenericGameData
         timeOfDay = 0;
         year = 1;
         lastScene = 2;
-        sunRotation = Quaternion.Euler(- 90, 170, 0);
+        sunRotation = Quaternion.Euler(-90, 170, 0);
 
         camera = new SerializableCamera(new SerializableObjectPosition(new Vector3(9f, 0f, -12f), Quaternion.identity), 0f, 0f);
         player = new SerializableObjectPosition(new Vector3(9f, 0f, -12f), Quaternion.identity);
