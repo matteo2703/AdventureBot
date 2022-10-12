@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestManager : MonoBehaviour, IDataManager
+public class QuestManager : MonoBehaviour, IPlayerManager
 {
     public static QuestManager Instance;
 
@@ -71,7 +71,7 @@ public class QuestManager : MonoBehaviour, IDataManager
         newQuest.InitQuest(questCounter);
     }
 
-    public void SaveGame(GenericGameData data)
+    public void SaveGame(GenericPlayerData data)
     {
         data.lastQuestId = lastQuestId;
         data.lastQuestRead = lastQuestRead;
@@ -83,7 +83,7 @@ public class QuestManager : MonoBehaviour, IDataManager
         }
     }
 
-    public void LoadGame(GenericGameData data)
+    public void LoadGame(GenericPlayerData data)
     {
         lastQuestId = data.lastQuestId;
         lastQuestRead = data.lastQuestRead;

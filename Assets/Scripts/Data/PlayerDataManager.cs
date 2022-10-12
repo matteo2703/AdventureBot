@@ -1,19 +1,19 @@
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
-using UnityEngine.SceneManagement;
+using UnityEngine;
 
-public class DataManager : MonoBehaviour
+public class PlayerDataManager : MonoBehaviour
 {
-    public static DataManager Instance { get; private set; }
+    public static PlayerDataManager Instance { get; private set; }
 
     [Header("File Storage Config")]
     [SerializeField] private string fileName;
 
-    public List<IDataManager> dataObjects;
-    public GenericGameData gameData;
+    public List<IPlayerManager> dataObjects;
+    public GenericPlayerData gameData;
     private FileDataHandler dataHandler;
-    public string selectedProfileId = "";
+    private string selectedProfileId = "";
 
     private void Awake()
     {
@@ -25,34 +25,23 @@ public class DataManager : MonoBehaviour
         Instance = this;
 
         dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
-    }
-
-    public void ChangeSelectedProfileId(string newProfileId)
-    {
-        selectedProfileId = newProfileId;
-        LoadGame();
-    }
-
-    public void DeleteProfileData(string profileId)
-    {
-        dataHandler.Delete(profileId);
-        LoadGame();
+        selectedProfileId = DataManager.Instance.selectedProfileId;
     }
 
     public void NewGame()
     {
-        gameData = new GenericGameData();
+        gameData = new GenericPlayerData();
     }
     public void LoadGame()
     {
 
         dataObjects = FindDataObjects();
-        gameData = dataHandler.LoadData(selectedProfileId);
+        gameData = dataHandler.LoadPlayer(selectedProfileId);
 
         if (gameData == null)
             NewGame();
 
-        foreach (IDataManager data in dataObjects)
+        foreach (IPlayerManager data in dataObjects)
         {
             data.LoadGame(gameData);
         }
@@ -62,22 +51,22 @@ public class DataManager : MonoBehaviour
         if (gameData == null)
             return;
 
-        foreach (IDataManager data in dataObjects)
+        foreach (IPlayerManager data in dataObjects)
         {
             data.SaveGame(gameData);
         }
 
-        dataHandler.SaveData(gameData, selectedProfileId);
+        dataHandler.SavePlayer(gameData, selectedProfileId);
     }
     public void BackToMenu()
     {
         Destroy(gameObject);
     }
 
-    public List<IDataManager> FindDataObjects()
+    public List<IPlayerManager> FindDataObjects()
     {
-        IEnumerable<IDataManager> dataObjects = FindObjectsOfType<MonoBehaviour>(true).OfType<IDataManager>();
-        return new List<IDataManager>(dataObjects);
+        IEnumerable<IPlayerManager> dataObjects = FindObjectsOfType<MonoBehaviour>(true).OfType<IPlayerManager>();
+        return new List<IPlayerManager>(dataObjects);
     }
     public bool HasGameData()
     {

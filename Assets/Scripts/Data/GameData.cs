@@ -19,8 +19,6 @@ public class GameData : MonoBehaviour, IDataManager
         }
         Instance = this;
 
-        DataManager.Instance.LoadGame();
-
         thisScene = SceneManager.GetActiveScene().buildIndex;
         Cursor.visible = false;
 

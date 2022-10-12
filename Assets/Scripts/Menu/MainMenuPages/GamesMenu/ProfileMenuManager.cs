@@ -40,7 +40,7 @@ public class ProfileMenuManager : MonoBehaviour
         //update the selected profile id
         DataManager.Instance.ChangeSelectedProfileId(slot.GetProfileId());
         //load game
-        DataManager.Instance.LoadGame();
+       // DataManager.Instance.LoadGame();
 
         StartCoroutine(LoadAsync());
     }
@@ -48,10 +48,14 @@ public class ProfileMenuManager : MonoBehaviour
     private IEnumerator LoadAsync()
     {
         //load scene
-        AsyncOperation characterSceneLoad = SceneManager.LoadSceneAsync("Character");
-        AsyncOperation sceneLoad = SceneManager.LoadSceneAsync(DataManager.Instance.gameData.lastScene, LoadSceneMode.Additive);
+        AsyncOperation sceneLoad = SceneManager.LoadSceneAsync(DataManager.Instance.gameData.lastScene);
+        AsyncOperation characterSceneLoad = SceneManager.LoadSceneAsync("Character", LoadSceneMode.Additive);
 
-        while (!characterSceneLoad.isDone || !sceneLoad.isDone)
+        while (!characterSceneLoad.isDone && !sceneLoad.isDone)
             yield return null;
+
+        PlayerDataManager.Instance.LoadGame();
+        DataManager.Instance.LoadGame();
+
     }
 }

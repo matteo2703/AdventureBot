@@ -2,7 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour, IDataManager
+public class PlayerStats : MonoBehaviour, IPlayerManager
 {
     public static PlayerStats Instance;
 
@@ -136,7 +136,7 @@ public class PlayerStats : MonoBehaviour, IDataManager
     {
         coins += value;
     }
-    public void LoadGame(GenericGameData data)
+    public void LoadGame(GenericPlayerData data)
     {
         totalLife = data.playerStat.totalLife;
         actualLife = data.playerStat.actualLife;
@@ -154,7 +154,7 @@ public class PlayerStats : MonoBehaviour, IDataManager
         InputManager.Instance.sprintTime = data.playerStat.maxSprintTime;
     }
 
-    public void SaveGame(GenericGameData data)
+    public void SaveGame(GenericPlayerData data)
     {
         data.playerStat.totalLife = totalLife;
         data.playerStat.actualLife = actualLife;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RecipeManager : MonoBehaviour, IDataManager
+public class RecipeManager : MonoBehaviour, IPlayerManager
 {
     public List<Recipe> recipes;
     public List<bool> discoveredRecipes = new();
@@ -48,13 +48,13 @@ public class RecipeManager : MonoBehaviour, IDataManager
         return discover;
     }
 
-    public void LoadGame(GenericGameData data)
+    public void LoadGame(GenericPlayerData data)
     {
         for (int i = 0; i < data.discoverdRecipes.Count; i++)
             discoveredRecipes.Add(data.discoverdRecipes[i]);
     }
 
-    public void SaveGame(GenericGameData data)
+    public void SaveGame(GenericPlayerData data)
     {
         data.discoverdRecipes.Clear();
         foreach (bool recipe in discoveredRecipes)

@@ -14,7 +14,7 @@ public class FileDataHandler
         this.dataFileName = dataFileName;
     }
 
-    public GenericGameData Load(string profileId)
+    public GenericGameData LoadData(string profileId)
     {
         string fullPath = Path.Combine(dataDirPath, profileId, dataFileName);
         GenericGameData loadedData = null;
@@ -39,8 +39,33 @@ public class FileDataHandler
 
         return loadedData;
     }
+    public GenericPlayerData LoadPlayer(string profileId)
+    {
+        string fullPath = Path.Combine(dataDirPath, profileId, dataFileName);
+        GenericPlayerData loadedData = null;
 
-    public void Save(GenericGameData data, string profileId)
+        if (File.Exists(fullPath))
+        {
+            try
+            {
+                //read data from the file
+                using FileStream stream = new(fullPath, FileMode.Open);
+                using StreamReader reader = new(stream);
+                string dataToLoad = reader.ReadToEnd();
+
+                //deserialize data from Json
+                loadedData = JsonUtility.FromJson<GenericPlayerData>(dataToLoad);
+            }
+            catch (Exception e)
+            {
+                Debug.Log("Errore nel tentativo di caricare i dati da " + fullPath + "\n" + e);
+            }
+        }
+
+        return loadedData;
+    }
+
+    public void SaveData(GenericGameData data, string profileId)
     {
         string fullPath = Path.Combine(dataDirPath, profileId, dataFileName);
         try
@@ -57,6 +82,27 @@ public class FileDataHandler
             writer.Write(dataToStore);
         }
         catch(Exception e)
+        {
+            Debug.Log("Errore nel tentativo di salvare i dati in " + fullPath + "\n" + e);
+        }
+    }
+    public void SavePlayer(GenericPlayerData data, string profileId)
+    {
+        string fullPath = Path.Combine(dataDirPath, profileId, dataFileName);
+        try
+        {
+            //create save directory if doesn't exist
+            Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
+
+            //serialize data into Json
+            string dataToStore = JsonUtility.ToJson(data, true);
+
+            //write data into the file
+            using FileStream stream = new(fullPath, FileMode.Create);
+            using StreamWriter writer = new(stream);
+            writer.Write(dataToStore);
+        }
+        catch (Exception e)
         {
             Debug.Log("Errore nel tentativo di salvare i dati in " + fullPath + "\n" + e);
         }
@@ -95,7 +141,7 @@ public class FileDataHandler
                 continue;
 
             //load the game data for this profile and put in the dictionary
-            GenericGameData profileData = Load(profileId);
+            GenericGameData profileData = LoadData(profileId);
             //check if profile has data
             if (profileData != null)
                 profileDictionary.Add(profileId, profileData);

@@ -14,6 +14,7 @@ public class PausePanelManager : Panel
     public void SetPause()
     {
         DataManager.Instance.dataObjects =  DataManager.Instance.FindDataObjects();
+        PlayerDataManager.Instance.dataObjects = PlayerDataManager.Instance.FindDataObjects();
         Time.timeScale = 0f;
         foreach (Panel panel in panels)
             panel.Deactivate();
@@ -42,5 +43,6 @@ public class PausePanelManager : Panel
     public void Save()
     {
         DataManager.Instance.SaveGame();
+        PlayerDataManager.Instance.SaveGame();
     }
 }

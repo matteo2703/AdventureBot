@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemsManager : MonoBehaviour, IDataManager
+public class ItemsManager : MonoBehaviour, IPlayerManager
 {
     public static ItemsManager Instance;
 
@@ -93,7 +93,7 @@ public class ItemsManager : MonoBehaviour, IDataManager
         }
     }
 
-    public void SaveGame(GenericGameData data)
+    public void SaveGame(GenericPlayerData data)
     {
         data.itemStates.Clear();
         foreach (InventoryItem item in items)
@@ -108,7 +108,7 @@ public class ItemsManager : MonoBehaviour, IDataManager
             data.discoveredItems.Add(prefab);
     }
 
-    public void LoadGame(GenericGameData data)
+    public void LoadGame(GenericPlayerData data)
     {
         for (int i = 0; i < data.itemStates.Count; i++)
             items[i].SetState(data.itemStates[i]);

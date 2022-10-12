@@ -5,9 +5,17 @@ using UnityEngine;
 public class StartTutorial : MonoBehaviour
 {
     public int startTutorialQuestId;
+    public Quest[] quests;
+
+    MissionsSetup missionSetup;
+
+    private void Awake()
+    {
+        missionSetup = FindObjectOfType<MissionsSetup>();
+    }
     void Start()
     {
-        Quest[] quests = QuestManager.Instance.WorldQuests();
+        quests = missionSetup.quests;
         foreach (Quest quest in quests)
         {
             if (quest.id == startTutorialQuestId)

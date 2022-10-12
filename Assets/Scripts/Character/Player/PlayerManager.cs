@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour, IDataManager
+public class PlayerManager : MonoBehaviour, IPlayerManager
 {
     public static PlayerManager Instance;
     Input input;
@@ -142,12 +142,12 @@ public class PlayerManager : MonoBehaviour, IDataManager
         }
     }
 
-    public void SaveGame(GenericGameData data)
+    public void SaveGame(GenericPlayerData data)
     {
         data.player = new SerializableObjectPosition(transform.position, transform.rotation);
     }
 
-    public void LoadGame(GenericGameData data)
+    public void LoadGame(GenericPlayerData data)
     {
         transform.position = data.player.position;
         transform.rotation = data.player.rotation;

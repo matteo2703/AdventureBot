@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraManager : MonoBehaviour, IDataManager
+public class CameraManager : MonoBehaviour, IPlayerManager
 {
     public static CameraManager Instance;
 
@@ -90,12 +90,12 @@ public class CameraManager : MonoBehaviour, IDataManager
         cameraTransform.localPosition = cameraVectorPosition;
     }
 
-    public void SaveGame(GenericGameData data)
+    public void SaveGame(GenericPlayerData data)
     {
         data.camera = new SerializableCamera(new SerializableObjectPosition(transform.position, transform.rotation), lookAngle, pivotAngle);
     }
 
-    public void LoadGame(GenericGameData data)
+    public void LoadGame(GenericPlayerData data)
     {
         transform.position = data.camera.camera.position;
         transform.rotation = data.camera.camera.rotation;

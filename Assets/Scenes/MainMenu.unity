@@ -559,6 +559,7 @@ GameObject:
   - component: {fileID: 199473770}
   - component: {fileID: 199473769}
   - component: {fileID: 199473772}
+  - component: {fileID: 199473773}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -626,6 +627,18 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+--- !u!114 &199473773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199473767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b34d0662c83f45f449231889f3b70eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &213755927
 GameObject:
   m_ObjectHideFlags: 0
@@ -2280,26 +2293,6 @@ MonoBehaviour:
     timeOfDay: 0
     year: 1
     sunRotation: {x: -0.061628457, y: 0.70441604, z: 0.70441604, w: 0.061628457}
-    camera:
-      camera:
-        position: {x: 0, y: 0, z: 0}
-        rotation: {x: 0, y: 0, z: 0, w: 1}
-      lookAngle: 0
-      pivotAngle: 0
-    player:
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-    playerStat:
-      totalLife: 100
-      actualLife: 100
-      maxRust: 100
-      rust: 0
-      intelligence: 0
-      resistance: 0
-      maxSprintTime: 5
-      coins: 0
-      exp: 0
-      level: 1
     quests: []
     lastQuestId: -1
     lastQuestRead: -1
@@ -2311,6 +2304,7 @@ MonoBehaviour:
     plantedTerrainSlot: 
     growingState: 
     actualGrowQuestProgress: 0
+  selectedProfileId: 
 --- !u!4 &639318772
 Transform:
   m_ObjectHideFlags: 0
